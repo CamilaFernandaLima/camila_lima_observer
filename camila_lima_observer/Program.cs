@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
+using static PCD;
 
 public abstract class Subject
 {
@@ -82,10 +84,10 @@ public class  PCD : Subject
         NotifyObservers();
     }
     
-    public class UniversidadeA : IObserver
+    public class Universidade : IObserver
     {
         private string nomeUni;
-        public UniversidadeA(string nome)
+        public Universidade(string nome)
         {
             this.nomeUni = nome;
         }
@@ -93,8 +95,35 @@ public class  PCD : Subject
         public void Update(Subject s)
         {
             PCD pcd = (PCD)s;
-            Console.WriteLine($"[NOTIFICAÇÃO] {nomeUni} detectou mudança no {pcd.GetNomeRio()}:");
+            Console.WriteLine($"[NOTIFICAÇÃO] {nomeUni} detectou mudança no {pcd.GetNomeRio()}.");
             Console.WriteLine($"Temp: {pcd.GetTemperatura()}°C, pH: {pcd.GetPh()}, Umidade: {pcd.GetUmidade()}%, Pressão: {pcd.GetPressao()} hPa");
         }
+    }
+}
+
+public class Program 
+{
+    public static void Main()
+    {
+        List<Universidade> universidades = new List<Universidade>
+        {
+            new Universidade("UFSC"),
+            new Universidade("UFPR"),
+            new Universidade("UNIFESP"),
+            new Universidade("USP"),
+            new Universidade("UNICAMP"),
+            new Universidade("UFRJ"),
+            new Universidade("UFMG"),
+            new Universidade("UFV")
+        };
+
+        List<PCD> rios = new List<PCD>
+        {
+            new PCD("Rio Amazonas"),
+            new PCD("Rio Negro"),
+            new PCD("Rio Solimões"),
+            new PCD("Rio Madeira"),
+            new PCD("Rio Tapajós"),
+        };
     }
 }
