@@ -96,7 +96,7 @@ public class  PCD : Subject
         {
             PCD pcd = (PCD)s;
             Console.WriteLine($"[NOTIFICAÇÃO] {nomeUni} detectou mudança no {pcd.GetNomeRio()}.");
-            Console.WriteLine($"Temp: {pcd.GetTemperatura()}°C, pH: {pcd.GetPh()}, Umidade: {pcd.GetUmidade()}%, Pressão: {pcd.GetPressao()} hPa");
+            Console.WriteLine($"Temp: {pcd.GetTemperatura()}°C, pH: {pcd.GetPh()}, Umidade: {pcd.GetUmidade()}%, Pressão: {pcd.GetPressao()} hPa\n");
         }
     }
 }
@@ -105,6 +105,7 @@ public class Program
 {
     public static void Main()
     {
+        // 1. instancia universidades e rios
         List<Universidade> universidades = new List<Universidade>
         {
             new Universidade("UFSC"),
@@ -125,5 +126,35 @@ public class Program
             new PCD("Rio Madeira"),
             new PCD("Rio Tapajós"),
         };
+
+        // 2. universidades se tornam observadoras dos rios
+
+        //USP e UNIFESP monitoram o Rio Amazonas
+        rios[0].AddObserver(universidades[2]);
+        rios[0].AddObserver(universidades[3]);
+
+        //UFSC e UFRJ monitoram o Rio Negro
+        rios[1].AddObserver(universidades[0]);
+        rios[1].AddObserver(universidades[5]);
+
+        //UFPR monitora o Rio Solimões
+        rios[2].AddObserver(universidades[1]);
+
+        //UNICAMP e UFMG monitoram o Rio Madeira
+        rios[3].AddObserver(universidades[4]);
+        rios[3].AddObserver(universidades[6]);
+
+        //UFV monitora o Rio Tapajós
+        rios[4].AddObserver(universidades[7]);
+
+        // 3. simulação das mudanças nas PCDs
+        Console.WriteLine("Sistema de monitoramento de rios da Amazônia:\n");
+
+        rios[0].SetPh(6.5);
+        rios[1].SetTemperatura(28.0);
+        rios[2].SetUmidade(85.0);
+        rios[3].SetPressao(1013.0);
+        rios[4].SetTemperatura(22.0);
+        rios[2].SetTemperatura(25.0);
     }
 }
