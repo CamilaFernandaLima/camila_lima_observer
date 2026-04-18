@@ -1,6 +1,6 @@
 # Implementação de PCDs na Amazônia 
 
-Contexto: Brasil resolve implementar um sistema que monitora rios (coleta de dados). Assim, eles espalham na Amazônia plataformas que medem esses dados sobre os rios: temperaturas, pH, pressão atmosférica, umidade do ar, etc. 
+Contexto: Brasil resolve implementar um sistema que monitora rios (coleta de dados). Assim, eles espalham na Amazônia plataformas que medem esses dados sobre os rios: temperaturas, pH, pressão atmosférica, umidade do ar. 
 
 Mais precisamente, existem várias plataformas de coletas de dados e várias Instituições Acadêmicas em diferentes cidades do brasil. Nesse sentido, cada Universidade começa a demonstrar interesse em observar algum rio específico.
 
