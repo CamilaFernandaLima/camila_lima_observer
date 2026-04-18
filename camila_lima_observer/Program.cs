@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
-using static PCD;
+using System.Collections.Generic;
 
 public abstract class Subject
 {
@@ -29,7 +27,7 @@ public interface IObserver
     void Update(Subject s);
 }
 
-public class  PCD : Subject
+public class PCD : Subject
 {
     public string nomeRio { get; set; }
 
@@ -83,23 +81,24 @@ public class  PCD : Subject
         this.pressao = pressao;
         NotifyObservers();
     }
+}
     
-    public class Universidade : IObserver
+public class Universidade : IObserver
+{
+    private string nomeUni;
+    public Universidade(string nome)
     {
-        private string nomeUni;
-        public Universidade(string nome)
-        {
-            this.nomeUni = nome;
-        }
+        this.nomeUni = nome;
+    }
 
-        public void Update(Subject s)
-        {
-            PCD pcd = (PCD)s;
-            Console.WriteLine($"[NOTIFICAÇÃO] {nomeUni} detectou mudança no {pcd.GetNomeRio()}.");
-            Console.WriteLine($"Temp: {pcd.GetTemperatura()}°C, pH: {pcd.GetPh()}, Umidade: {pcd.GetUmidade()}%, Pressão: {pcd.GetPressao()} hPa\n");
-        }
+    public void Update(Subject s)
+    {
+        PCD pcd = (PCD)s;
+        Console.WriteLine($"[NOTIFICAÇÃO] {nomeUni} detectou mudança no {pcd.GetNomeRio()}.");
+        Console.WriteLine($"Temp: {pcd.GetTemperatura()}°C, pH: {pcd.GetPh()}, Umidade: {pcd.GetUmidade()}%, Pressão: {pcd.GetPressao()} hPa\n");
     }
 }
+
 
 public class Program 
 {
